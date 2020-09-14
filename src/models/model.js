@@ -49,7 +49,24 @@ class Model {
     query += condition;
     query += ' RETURNING *';
     return this.pool.query(query);
-  }
+  };
+
+  async deleteWithReturn(columns, values) {
+    let condition = ' WHERE ';
+    for (let index = 0; index < columns.length; index++) {
+      const column = columns[index];
+      const value = values[index];
+      if (index != columns.length - 1) {
+        condition += ` ${column} = ${value} AND`;
+      } else {
+        condition += ` ${column} = ${value}`;
+      }
+    }
+    let query = `DELETE FROM ${this.table} `;
+    query += condition;
+    query += ' RETURNING *';
+    return this.pool.query(query);
+  };
 }
 
 export default Model;
