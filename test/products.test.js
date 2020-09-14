@@ -42,11 +42,11 @@ describe('Products', () => {
 
   it('updates a product', (done) => {
     const data = {
-      old_product_name: `'Philodendron Squamiferum'`,
-      old_cutting_type: `'rooted'`,
-      product_name: `'edited Philodendron Squamiferum'`,
+      old_product_name: 'Philodendron Squamiferum',
+      old_cutting_type: 'rooted',
+      product_name: 'edited Philodendron Squamiferum',
       price: 3,
-      cutting_type: `'edited rooted'`,
+      cutting_type: 'edited rooted',
     };
     server
       .put(`${BASE_URL}/products`)
@@ -63,6 +63,31 @@ describe('Products', () => {
           );
           expect(m).to.have.property('price', '3');
           expect(m).to.have.property('cutting_type', 'edited rooted');
+        });
+        done();
+      });
+  });
+  it('deletes a product', (done) => {
+    const data = {
+      product_name: 'Philodendron Squamiferum',
+      cutting_type: 'rooted',
+      price: 3,
+    };
+    server
+      .delete(`${BASE_URL}/products`)
+      .send(data)
+      .expect(200)
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.products).to.be.instanceOf(Array);
+        res.body.products.forEach((m) => {
+          expect(m).to.have.property('id');
+          expect(m).to.have.property(
+            'product_name',
+            'Philodendron Squamiferum'
+          );
+          expect(m).to.have.property('price', '3');
+          expect(m).to.have.property('cutting_type', 'rooted');
         });
         done();
       });
