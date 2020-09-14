@@ -33,9 +33,9 @@ export const updateProduct = async (req, res) => {
     cutting_type,
   } = req.body;
   const constraintColumns = [ 'product_name', 'cutting_type' ];
-  const oldValues = [ old_product_name, old_cutting_type ];
+  const oldValues = [ `'${old_product_name}'`, `'${old_cutting_type}'` ];
   const columns = [ 'product_name', 'price', 'cutting_type' ];
-  const values = [ product_name, price, cutting_type ];
+  const values = [ `'${product_name}'`, `'${price}'`, `'${cutting_type}'` ];
   try {
     const data = await productsModel.updateWithReturn(
       constraintColumns,
