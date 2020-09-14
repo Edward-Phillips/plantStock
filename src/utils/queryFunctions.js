@@ -3,6 +3,8 @@ import {
   insertProducts,
   dropProductsTable,
   createProductsTable,
+  insertStock,
+  createStockTable,
 } from './queries';
 
 export const executeQueryArray = async (arr) => new Promise((resolve) => {
@@ -14,5 +16,5 @@ export const executeQueryArray = async (arr) => new Promise((resolve) => {
 });
 
 export const dropTables = () => executeQueryArray([ dropProductsTable ]);
-export const createTables = () => executeQueryArray([ createProductsTable ]);
-export const insertIntoTables = () => executeQueryArray([ insertProducts ]);
+export const createTables = () => executeQueryArray([ createProductsTable, createStockTable ]);
+export const insertIntoTables = () => executeQueryArray([ insertProducts, insertStock ]);
