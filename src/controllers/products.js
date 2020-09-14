@@ -51,19 +51,13 @@ export const updateProduct = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-  const {
-    product_name,
-    cutting_type 
-  } = req.body;
+  const { product_name, cutting_type } = req.body;
   const columns = [ 'product_name', 'cutting_type' ];
-  const values = [`'${product_name}'`, `'${cutting_type}'`]
+  const values = [ `'${product_name}'`, `'${cutting_type}'` ];
   try {
-    const data = await productsModel.deleteWithReturn(
-      columns,
-      values
-    );
+    const data = await productsModel.deleteWithReturn(columns, values);
     res.status(200).json({ products: data.rows });
   } catch (err) {
     res.status(200).json({ products: err.stack });
   }
-}
+};
