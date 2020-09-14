@@ -48,7 +48,6 @@ class Model {
     };
     query += condition;
     query += ' RETURNING *';
-    console.log(query);
     return this.pool.query(query);
   };
 }
