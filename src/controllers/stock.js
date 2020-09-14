@@ -1,3 +1,14 @@
-export const stockPage = (req, res) => res
-  .status(200)
-  .json({ message: 'one day this will be the endpoint for stock entry' });
+import Model from '../models/model';
+
+const stockModel = new Model('stock');
+
+export const stockPage = async (req, res) => {
+  try {
+    const data = await stockModel.select(
+      'product_id, cost_per_cutting, current_count, last_updated'
+    );
+    res.status(200).json({ stock: data.rows });
+  } catch (err) {
+    res.status(200).json({ stock: err.stack });
+  }
+};
