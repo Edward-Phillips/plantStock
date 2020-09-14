@@ -35,7 +35,7 @@ class Model {
       } else {
         condition += ` ${column} = ${value}`;
       }
-    };
+    }
     let query = `UPDATE ${this.table} SET `;
     for (let index = 0; index < columns.length; index++) {
       const column = columns[index];
@@ -45,11 +45,11 @@ class Model {
       } else {
         query += `${column} = ${value}`;
       }
-    };
+    }
     query += condition;
     query += ' RETURNING *';
     return this.pool.query(query);
-  };
+  }
 }
 
 export default Model;

@@ -1,5 +1,11 @@
 import express from 'express';
-import { indexPage, stockPage, productsPage, addProduct, updateProduct } from '../controllers';
+import {
+  indexPage,
+  stockPage,
+  productsPage,
+  addProduct,
+  updateProduct,
+} from '../controllers';
 
 const indexRouter = express.Router();
 

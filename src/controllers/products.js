@@ -24,14 +24,25 @@ export const addProduct = async (req, res) => {
   }
 };
 
-export const updateProduct = async(req, res) => {
-  const {old_product_name, old_cutting_type, product_name, price, cutting_type } = req.body;
-  const constraintColumns = ['product_name', 'cutting_type'];
-  const oldValues = [old_product_name, old_cutting_type];
-  const columns = ['product_name', 'price', 'cutting_type'];
-  const values = [product_name, price, cutting_type];
+export const updateProduct = async (req, res) => {
+  const {
+    old_product_name,
+    old_cutting_type,
+    product_name,
+    price,
+    cutting_type,
+  } = req.body;
+  const constraintColumns = [ 'product_name', 'cutting_type' ];
+  const oldValues = [ old_product_name, old_cutting_type ];
+  const columns = [ 'product_name', 'price', 'cutting_type' ];
+  const values = [ product_name, price, cutting_type ];
   try {
-    const data = await productsModel.updateWithReturn(constraintColumns, oldValues, columns, values)
+    const data = await productsModel.updateWithReturn(
+      constraintColumns,
+      oldValues,
+      columns,
+      values
+    );
     res.status(200).json({ products: data.rows });
   } catch (err) {
     res.status(200).json({ products: err.stack });
