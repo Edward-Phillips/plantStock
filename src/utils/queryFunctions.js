@@ -18,3 +18,4 @@ export const executeQueryArray = async (arr) => new Promise((resolve) => {
 export const dropTables = () => executeQueryArray([ dropProductsTable ]);
 export const createTables = () => executeQueryArray([ createProductsTable, createStockTable ]);
 export const insertIntoTables = () => executeQueryArray([ insertProducts, insertStock ]);
+export const createAndInsertIntoTables = () => executeQueryArray([ createProductsTable, createStockTable, insertProducts, insertStock ]);
