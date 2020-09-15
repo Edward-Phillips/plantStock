@@ -2,11 +2,12 @@ import {
   dropTables,
   createTables,
   insertIntoTables,
+  createAndInsertIntoTables,
+  stupidSolution
 } from '../src/utils/queryFunctions';
 
 before(async () => {
-  await createTables();
-  await insertIntoTables();
+  await stupidSolution();
 });
 
 after(async () => {
