@@ -49,7 +49,7 @@ class Model {
     query += condition;
     query += ' RETURNING *';
     return this.pool.query(query);
-  };
+  }
 
   async deleteWithReturn(columns, values) {
     let condition = ' WHERE ';
@@ -66,7 +66,7 @@ class Model {
     query += condition;
     query += ' RETURNING *';
     return this.pool.query(query);
-  };
+  }
 }
 
 export default Model;

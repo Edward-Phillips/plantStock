@@ -1,6 +1,5 @@
-import { createTables, insertIntoTables } from './queryFunctions';
+import { createTables, insertIntoTables, stupidAsyncWorkaround, createAndInsertIntoTables } from './queryFunctions';
 
 (async () => {
-  await createTables();
-  await insertIntoTables();
+  await createAndInsertIntoTables();
 })();
