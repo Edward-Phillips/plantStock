@@ -15,7 +15,7 @@ VALUES
   ('Philodendron Squamiferum', 1.5, 'unrooted')
 `;
 
-export const dropProductsTable = 'DROP TABLE products CASCADE';
+export const dropProductsTable = 'DROP TABLE IF EXISTS products CASCADE';
 
 export const createStockTable = `
 DROP TABLE IF EXISTS stock;
@@ -36,3 +36,29 @@ VALUES
 `;
 
 export const dropStockTable = 'DROP TABLE IF EXISTS stock';
+
+export const stupidAsyncSQL = `
+DROP TABLE IF EXISTS products CASCADE;
+CREATE TABLE IF NOT EXISTS products(
+  id serial PRIMARY KEY,
+  product_name VARCHAR ( 255 ) NOT NULL,
+  price NUMERIC,
+  cutting_type VARCHAR ( 255 ) NOT NULL
+);
+DROP TABLE IF EXISTS stock;
+CREATE TABLE IF NOT EXISTS stock(
+  id serial PRIMARY KEY,
+  product_id INTEGER REFERENCES products(id),
+  cost_per_cutting NUMERIC NOT NULL,
+  current_count INTEGER NOT NULL,
+  last_updated TIMESTAMP
+);
+INSERT INTO products(product_name, price, cutting_type)
+VALUES
+  ('Philodendron Squamiferum', 3, 'rooted'),
+  ('Philodendron Squamiferum', 1.5, 'unrooted');
+INSERT INTO stock(product_id, cost_per_cutting, current_count)
+VALUES
+  (1, 0.35, 25),
+  (2, 0.35, 25)
+`;
