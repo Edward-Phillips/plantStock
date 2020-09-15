@@ -11,7 +11,6 @@ import {
 export const executeQueryArray = async (arr) => new Promise((resolve) => {
   const stop = arr.length;
   arr.forEach(async (q, index) => {
-    console.log(`current query: ${q}`)
     await pool.query(q);
     if (index + 1 === stop) resolve();
   });
