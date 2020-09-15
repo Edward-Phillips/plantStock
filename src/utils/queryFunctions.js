@@ -5,11 +5,13 @@ import {
   createProductsTable,
   insertStock,
   createStockTable,
+  stupidAsyncSQL,
 } from './queries';
 
 export const executeQueryArray = async (arr) => new Promise((resolve) => {
   const stop = arr.length;
   arr.forEach(async (q, index) => {
+    console.log(`current query: ${q}`)
     await pool.query(q);
     if (index + 1 === stop) resolve();
   });
@@ -18,4 +20,5 @@ export const executeQueryArray = async (arr) => new Promise((resolve) => {
 export const dropTables = () => executeQueryArray([ dropProductsTable ]);
 export const createTables = () => executeQueryArray([ createProductsTable, createStockTable ]);
 export const insertIntoTables = () => executeQueryArray([ insertProducts, insertStock ]);
-export const createAndInsertIntoTables = () => executeQueryArray([ createProductsTable, createStockTable, insertProducts, insertStock ]);
+export const stupidSolution = () => executeQueryArray([ stupidAsyncSQL ])
+export const createAndInsertIntoTables = () => executeQueryArray([ createProductsTable, createStockTable]);
