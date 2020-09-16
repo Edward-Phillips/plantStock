@@ -1,10 +1,4 @@
-import {
-  dropTables,
-  createTables,
-  insertIntoTables,
-  createAndInsertIntoTables,
-  stupidSolution,
-} from '../src/utils/queryFunctions';
+import { dropTables, stupidSolution } from '../src/utils/queryFunctions';
 
 before(async () => {
   await stupidSolution();

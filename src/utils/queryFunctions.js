@@ -1,8 +1,5 @@
 import { pool } from '../models/pool';
-import {
-  dropProductsTable,
-  stupidAsyncSQL,
-} from './queries';
+import { dropProductsTable, stupidAsyncSQL } from './queries';
 
 export const executeQueryArray = async (arr) => new Promise((resolve) => {
   const stop = arr.length;
