@@ -12,7 +12,6 @@ export const productIdFinder = async (req, res, next) => {
     req.product_id = id;
     next();
   } catch (err) {
-    req.body.err = err;
-    next();
+    res.status(200).json({ stock: err.stack });
   }
 };
