@@ -1,2 +1,2 @@
 export * from './middleware';
-export * from './productNameFinder';
+export * from './productIdFinder';
