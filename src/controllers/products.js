@@ -61,3 +61,14 @@ export const deleteProduct = async (req, res) => {
     res.status(200).json({ products: err.stack });
   }
 };
+
+export const getProductId = async (product_name, cutting_type) => {
+  const column = 'id';
+  const clause = `WHERE product_name = '${product_name}' AND cutting_type = '${cutting_type}'`;
+  try {
+    const data = await productsModel.select(column, clause);
+    return data;
+  } catch (err) {
+    return err;
+  }
+};

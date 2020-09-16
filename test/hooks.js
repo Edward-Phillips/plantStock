@@ -3,7 +3,7 @@ import {
   createTables,
   insertIntoTables,
   createAndInsertIntoTables,
-  stupidSolution
+  stupidSolution,
 } from '../src/utils/queryFunctions';
 
 before(async () => {
