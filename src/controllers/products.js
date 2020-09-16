@@ -63,7 +63,6 @@ export const deleteProduct = async (req, res) => {
 };
 
 export const getProductId = async (product_name, cutting_type) => {
-  console.log('ayyyy in get productId');
   const column = 'id';
   const clause = `WHERE product_name = '${product_name}' AND cutting_type = '${cutting_type}'`;
   try {
