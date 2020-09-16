@@ -14,11 +14,7 @@ export const stockPage = async (req, res) => {
 };
 
 export const addStock = async (req, res) => {
-  const {
-    product_name,
-    cost_per_cutting,
-    current_count,
-  } = req.body;
+  const { product_name, cost_per_cutting, current_count } = req.body;
   const { product_id } = req;
   const columns = 'product_id, cost_per_cutting, current_count ';
   const values = `${product_id}, ${cost_per_cutting}, ${current_count}`;
