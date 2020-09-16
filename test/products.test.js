@@ -67,6 +67,7 @@ describe('Products', () => {
         done();
       });
   });
+
   it('deletes a product', (done) => {
     const data = {
       product_name: 'Philodendron Squamiferum',
