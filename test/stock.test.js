@@ -41,4 +41,31 @@ describe('stock resource', () => {
         done();
       });
   });
+
+  it('updates a stock', (done) => {
+    const data = {
+      product_name: 'Philodendron Squamiferum',
+      cutting_type: 'unrooted',
+      cost_per_cutting: 0.35,
+      new_count: 24,
+    };
+    server
+      .put(`${BASE_URL}/stock`)
+      .send(data)
+      .expect(200)
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.stock).to.be.instanceOf(Array);
+        res.body.stock.forEach((m) => {
+          expect(m).to.have.property('id');
+          expect(m).to.have.property(
+            'product_name',
+            'Philodendron Squamiferum'
+          );
+          expect(m).to.have.property('current_count', 24);
+          expect(m).to.have.property('cutting_type', 'unrooted');
+        });
+        done();
+      });
+  });
 });

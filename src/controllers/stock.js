@@ -26,3 +26,27 @@ export const addStock = async (req, res) => {
     res.status(200).json({ stock: err.stack });
   }
 };
+
+export const updateStock = async (req, res) => {
+  const {
+    product_name, cost_per_cutting, new_count, cutting_type
+  } = req.body;
+  const { product_id } = req;
+  const constraintColumns = [ 'product_id', 'cost_per_cutting' ];
+  const constraintValues = [ product_id, cost_per_cutting ];
+  const columns = [ 'current_count' ];
+  const values = [ new_count ];
+  try {
+    const data = await stockModel.updateWithReturn(
+      constraintColumns,
+      constraintValues,
+      columns,
+      values
+    );
+    data.rows[0].product_name = product_name;
+    data.rows[0].cutting_type = cutting_type;
+    res.status(200).json({ stock: data.rows });
+  } catch (err) {
+    res.status(200).json({ stock: err.stack });
+  }
+};
