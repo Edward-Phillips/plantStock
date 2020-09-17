@@ -43,7 +43,6 @@ export const updateStock = async (req, res) => {
       columns,
       values
     );
-    console.log(data);
     data.rows[0].product_name = product_name;
     data.rows[0].cutting_type = cutting_type;
     res.status(200).json({ stock: data.rows });
