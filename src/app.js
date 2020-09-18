@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use('/v1', indexRouter);
 app.use((req,res,next) => {
-  res.header("Access-Conrol-Allow-Origin","plantstock.surge.sh");
+  res.header("Access-Conrol-Allow-Origin",'*');
   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE,PATCH,PUT");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
