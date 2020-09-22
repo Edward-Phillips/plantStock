@@ -4,8 +4,10 @@ const stockModel = new Model('stock');
 
 export const stockPage = async (req, res) => {
   try {
+    const clause = ' INNER JOIN products ON products.id = stock.product_id';
     const data = await stockModel.select(
-      'product_id, cost_per_cutting, current_count, last_updated'
+      'product_name, product_id, cost_per_cutting, current_count, last_updated',
+      clause
     );
     res.status(200).json({ stock: data.rows });
   } catch (err) {
