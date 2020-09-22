@@ -5,7 +5,7 @@ import indexRouter from './routes/index';
 
 const cors = require('cors');
 
-const whitelist = [ 'http://plantstock.surge.sh', 'https://plantstock.surge.sh' ];
+const whitelist = [ 'http://plantstock.surge.sh', 'https://plantstock.surge.sh', '*' ];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
