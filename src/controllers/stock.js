@@ -4,11 +4,9 @@ const stockModel = new Model('stock');
 
 export const stockPage = async (req, res) => {
   try {
+    const columns = 'product_name, product_id, cost_per_cutting, current_count, last_updated';
     const clause = ' INNER JOIN products ON products.id = stock.product_id';
-    const data = await stockModel.select(
-      'product_name, product_id, cost_per_cutting, current_count, last_updated',
-      clause
-    );
+    const data = await stockModel.select(columns, clause);
     res.status(200).json({ stock: data.rows });
   } catch (err) {
     res.status(200).json({ stock: err.stack });
