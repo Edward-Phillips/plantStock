@@ -7,13 +7,7 @@ const cors = require('cors');
 
 const whitelist = [ 'http://plantstock.surge.sh', 'https://plantstock.surge.sh', '*' ];
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: '*',
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
