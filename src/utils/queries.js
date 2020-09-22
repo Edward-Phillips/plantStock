@@ -53,6 +53,12 @@ CREATE TABLE IF NOT EXISTS stock(
   current_count INTEGER NOT NULL,
   last_updated TIMESTAMP
 );
+DROP TABLE IF EXISTS customers;
+CREATE TABLE IF NOT EXISTS customers(
+  id serial PRIMARY KEY,
+  name VARCHAR ( 255 ) NOT NULL,
+  address VARCHAR ( 255 ) NOT NULL
+);
 INSERT INTO products(product_name, price, cutting_type)
 VALUES
   ('Philodendron Squamiferum', 3, 'rooted'),
@@ -60,5 +66,10 @@ VALUES
 INSERT INTO stock(product_id, cost_per_cutting, current_count)
 VALUES
   (1, 0.35, 25),
-  (2, 0.35, 25)
+  (2, 0.35, 25);
+
+INSERT INTO customers(name, address)
+VALUES
+  ('Steve', '45 the house on the hill'),
+  ('Gerald', '14 The Shieldwall, Arrakis');
 `;
