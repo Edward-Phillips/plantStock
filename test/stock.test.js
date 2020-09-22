@@ -9,6 +9,7 @@ describe('stock resource', () => {
         expect(res.status).to.equal(200);
         expect(res.body.stock).to.be.instanceOf(Array);
         res.body.stock.forEach((m) => {
+          expect(m).to.have.property('product_name');
           expect(m).to.have.property('cost_per_cutting');
           expect(m).to.have.property('current_count');
           expect(m).to.have.property('last_updated');
