@@ -9,6 +9,7 @@ import {
   updateProduct,
   deleteProduct,
   customersPage,
+  addCustomer,
 } from '../controllers';
 import { productIdFinder } from '../middleware';
 
@@ -26,5 +27,6 @@ indexRouter.put('/products', updateProduct);
 indexRouter.delete('/products', deleteProduct);
 
 indexRouter.get('/customers', customersPage);
+indexRouter.post('/customers', addCustomer);
 
 export default indexRouter;
