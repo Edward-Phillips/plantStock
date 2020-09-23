@@ -6,7 +6,6 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/35be65ea2ae5dd89f775/maintainability)](https://codeclimate.com/github/Edward-Phillips/plantStock/maintainability)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/35be65ea2ae5dd89f775/test_coverage)](https://codeclimate.com/github/Edward-Phillips/plantStock/test_coverage)
 
 This repo is designed to be a backend for a stock/CRM system for plant cuttings.
 
