@@ -4,9 +4,9 @@ import cookieParser from 'cookie-parser';
 import indexRouter from './routes/index';
 
 const cors = require('cors');
-
+const whitelist = [ 'http://plantstock.surge.sh', 'https://plantstock.surge.sh', '*' ];
 const corsOptions = {
-  origin: 'http://plantstock.surge.sh',
+  origin: '*',
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
