@@ -35,6 +35,21 @@ The following user stories are the basis for this project:
 
 The MVP for this project is the first two user stories, a stock management system.
 
+# Set Up
+
+To set up first clone this repo, then run npm install, you will need to add two environmental variables in a .env file -
+
+```
+TEST_ENV_VARIABLE="Environment variable is coming across"
+CONNECTION_STRING=put-your postgresql-database-url here
+```
+
+after that you need to run: `yarn runQuery` to create the tables - currently the SQL statement to create the tables is located in src/utils/queries.js, so if you want to edit the table structure that's the place to start.  
+WARNING - this command will also inject some example data into the tables, so if you actually want to use this be sure to remove those lines/truncate the tables afterwards.
+
+The last command to run is yarn startdev and you should have a server listening on 3000.
+
+
 
 # '/v1' MVP Endpoints
 
