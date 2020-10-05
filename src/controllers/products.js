@@ -1,7 +1,7 @@
-import { restart } from 'nodemon';
 import Model from '../models/model';
 
 const productsModel = new Model('products');
+
 export const productsPage = async (req, res) => {
   try {
     const data = await productsModel.select(

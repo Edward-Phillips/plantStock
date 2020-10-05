@@ -37,6 +37,8 @@ VALUES
 
 export const dropStockTable = 'DROP TABLE IF EXISTS stock';
 
+export const dropCustomersTable = 'DROP TABLE IF EXISTS customers';
+
 export const stupidAsyncSQL = `
 DROP TABLE IF EXISTS products CASCADE;
 CREATE TABLE IF NOT EXISTS products(

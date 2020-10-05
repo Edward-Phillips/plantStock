@@ -8,7 +8,8 @@ import {
   addProduct,
   updateProduct,
   deleteProduct,
-  customersPage,
+  getCustomers,
+  getOneCustomer,
   addCustomer,
   updateCustomer,
 } from '../controllers';
@@ -27,7 +28,8 @@ indexRouter.post('/products', addProduct);
 indexRouter.put('/products', updateProduct);
 indexRouter.delete('/products', deleteProduct);
 
-indexRouter.get('/customers', customersPage);
+indexRouter.get('/customers', getCustomers);
+indexRouter.get('/customers/:id', getOneCustomer);
 indexRouter.post('/customers', addCustomer);
 indexRouter.put('/customers', updateCustomer);
 

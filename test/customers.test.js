@@ -58,4 +58,19 @@ describe('Customers', () => {
         done();
       });
   });
+
+  it('gets a single customer by ID', (done) => {
+    server
+      .get(`${BASE_URL}/customers/1`)
+      .expect(200)
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.customers).to.be.instanceOf(Array);
+        expect(res.body.customers.length).to.equal(1);
+        expect(res.body.customers[0]).to.have.property('id', 1);
+        expect(res.body.customers[0]).to.have.property('name');
+        expect(res.body.customers[0]).to.have.property('address');
+        done();
+      });
+  });
 });

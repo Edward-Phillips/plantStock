@@ -25,6 +25,11 @@ class Model {
     return this.pool.query(query);
   }
 
+  async getById(id) {
+    const condition = ` WHERE id = ${id}`;
+    return this.select('*', condition);
+  }
+
   async updateWithReturn(constraintColumns, oldValues, columns, values) {
     let condition = ' WHERE ';
     for (let index = 0; index < constraintColumns.length; index++) {
