@@ -8,13 +8,8 @@ import {
 
 const customerRouter = express.Router({ mergeParams: true });
 
-const debug = (req, res, next) => {
-  console.log(req.params.id);
-  next();
-};
-
 customerRouter.get('/', getCustomers);
-customerRouter.get('/:id', debug, getOneCustomer);
+customerRouter.get('/:id', getOneCustomer);
 customerRouter.post('/', addCustomer);
 customerRouter.put('/', updateCustomer);
 
