@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS products(
   price NUMERIC,
   cutting_type VARCHAR ( 255 ) NOT NULL
 );
-DROP TABLE IF EXISTS stock;
+DROP TABLE IF EXISTS stock CASCADE;
 CREATE TABLE IF NOT EXISTS stock(
   id serial PRIMARY KEY,
   product_id INTEGER REFERENCES products(id),
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS stock(
   current_count INTEGER NOT NULL,
   last_updated TIMESTAMP
 );
-DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS customers CASCADE;
 CREATE TABLE IF NOT EXISTS customers(
   id serial PRIMARY KEY,
   name VARCHAR ( 255 ) NOT NULL,
