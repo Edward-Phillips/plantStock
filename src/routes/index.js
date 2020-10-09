@@ -12,6 +12,7 @@ import {
   getOneCustomer,
   addCustomer,
   updateCustomer,
+  getOrdersForCustomer,
 } from '../controllers';
 import { productIdFinder } from '../middleware';
 
@@ -32,5 +33,7 @@ indexRouter.get('/customers', getCustomers);
 indexRouter.get('/customers/:id', getOneCustomer);
 indexRouter.post('/customers', addCustomer);
 indexRouter.put('/customers', updateCustomer);
+
+indexRouter.get('/orders/:customerId', getOrdersForCustomer);
 
 export default indexRouter;
