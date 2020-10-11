@@ -25,32 +25,13 @@ class Model {
     return this.pool.query(query);
   }
 
-  async getById(id) {
-    const condition = ` WHERE id = ${id}`;
-    return this.select('*', condition);
-  }
-
   async updateWithReturn(constraintColumns, oldValues, columns, values) {
     let condition = ' WHERE ';
-    for (let index = 0; index < constraintColumns.length; index++) {
-      const column = constraintColumns[index];
-      const value = oldValues[index];
-      if (index != constraintColumns.length - 1) {
-        condition += ` ${column} = ${value} AND`;
-      } else {
-        condition += ` ${column} = ${value}`;
-      }
-    }
+    // need to refactor
+    condition += Model.queryStitcher(constraintColumns, oldValues);
+    //  need to refactor
     let query = `UPDATE ${this.table} SET `;
-    for (let index = 0; index < columns.length; index++) {
-      const column = columns[index];
-      const value = values[index];
-      if (index != columns.length - 1) {
-        query += `${column} = ${value}, `;
-      } else {
-        query += `${column} = ${value}`;
-      }
-    }
+    query += Model.queryStitcher(columns, values, ',');
     query += condition;
     query += ' RETURNING *';
     return this.pool.query(query);
@@ -58,19 +39,27 @@ class Model {
 
   async deleteWithReturn(columns, values) {
     let condition = ' WHERE ';
-    for (let index = 0; index < columns.length; index++) {
-      const column = columns[index];
-      const value = values[index];
-      if (index != columns.length - 1) {
-        condition += ` ${column} = ${value} AND`;
-      } else {
-        condition += ` ${column} = ${value}`;
-      }
-    }
+    condition += Model.queryStitcher(columns, values);
     let query = `DELETE FROM ${this.table} `;
     query += condition;
     query += ' RETURNING *';
     return this.pool.query(query);
+  }
+
+  async getById(id) {
+    const condition = ` WHERE id = ${id}`;
+    return this.select('*', condition);
+  }
+
+  static queryStitcher(columns, values, lineBreaker = ' AND') {
+    let queryAddition;
+    for (let index = 0; index < columns.length - 1; index++) {
+      const column = columns[index];
+      const value = values[index];
+      queryAddition += ` ${column} = ${value}${lineBreaker}`;
+    }
+    queryAddition += ` ${column} = ${value}`;
+    return queryAddition;
   }
 }
 
