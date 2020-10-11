@@ -52,13 +52,13 @@ class Model {
   }
 
   static queryStitcher(columns, values, lineBreaker = ' AND') {
-    let queryAddition;
+    let queryAddition = '';
     for (let index = 0; index < columns.length - 1; index++) {
       const column = columns[index];
       const value = values[index];
       queryAddition += ` ${column} = ${value}${lineBreaker}`;
     }
-    queryAddition += ` ${column} = ${value}`;
+    queryAddition += ` ${columns[columns.length - 1]} = ${values[values.length - 1]}`;
     return queryAddition;
   }
 }
