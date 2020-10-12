@@ -26,17 +26,13 @@ export const updateCustomer = async (req, res) => {
   const columns = [ 'name', 'address' ];
   const constraintValues = [ `'${old_name}'`, `'${old_address}'` ];
   const values = [ `'${name}'`, `'${address}'` ];
-  try {
-    const data = await customersModel.updateWithReturn(
-      columns,
-      constraintValues,
-      columns,
-      values
-    );
-    res.status(200).json({ customers: data.rows });
-  } catch (err) {
-    res.status(200).json({ customers: err.stack });
-  }
+  const queryResult = await customersHandler.updateResource(
+    columns,
+    constraintValues,
+    columns,
+    values
+  );
+  res.status(200).json({ customers: queryResult });
 };
 
 export const getOneCustomer = async (req, res) => {

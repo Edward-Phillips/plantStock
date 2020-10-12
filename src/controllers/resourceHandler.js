@@ -22,6 +22,20 @@ class ResourceHandler {
       return err.stack;
     }
   }
+
+  async updateResource(constraintColumns, constraintValues, columns, values) {
+    try {
+      const data = await this.model.updateWithReturn(
+        constraintColumns,
+        constraintValues,
+        columns,
+        values
+      );
+      return data.rows;
+    } catch (err) {
+      return err.stack;
+    }
+  }
 }
 
 export default ResourceHandler;
