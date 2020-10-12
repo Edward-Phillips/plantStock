@@ -1,6 +1,9 @@
 import Model from '../models/model';
+import ResourceHandler from './resourceHandler';
 
 const customersModel = new Model('customers');
+
+const customersHandler = new ResourceHandler('customers');
 
 export const getCustomers = async (req, res) => {
   try {
@@ -15,12 +18,8 @@ export const addCustomer = async (req, res) => {
   const { name, address } = req.body;
   const columns = 'name, address';
   const values = `'${name}', '${address}'`;
-  try {
-    const data = await customersModel.insertWithReturn(columns, values);
-    res.status(200).json({ customers: data.rows });
-  } catch (err) {
-    res.status(200).json({ customers: err.stack });
-  }
+  const queryResult = await customersHandler.addResource(columns, values);
+  res.status(200).json({ customers: queryResult });
 };
 
 export const updateCustomer = async (req, res) => {
