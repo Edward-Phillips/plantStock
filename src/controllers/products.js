@@ -1,28 +1,22 @@
 import Model from '../models/model';
+import ResourceHandler from './resourceHandler';
 
 const productsModel = new Model('products');
 
+const productsHandler = new ResourceHandler('products');
+
 export const productsPage = async (req, res) => {
-  try {
-    const data = await productsModel.select(
-      'product_name, price, cutting_type'
-    );
-    res.status(200).json({ products: data.rows });
-  } catch (err) {
-    res.status(200).json({ products: err.stack });
-  }
+  const columns = 'product_name, price, cutting_type';
+  const queryResult = await productsHandler.getResources(columns);
+  res.status(200).json({ products: queryResult });
 };
 
 export const addProduct = async (req, res) => {
   const { product_name, price, cutting_type } = req.body;
   const columns = 'product_name, price, cutting_type';
   const values = `'${product_name}', ${price}, '${cutting_type}'`;
-  try {
-    const data = await productsModel.insertWithReturn(columns, values);
-    res.status(200).json({ products: data.rows });
-  } catch (err) {
-    res.status(200).json({ products: err.stack });
-  }
+  const queryResult = await productsHandler.addResource(columns, values);
+  res.status(200).json({ products: queryResult });
 };
 
 export const updateProduct = async (req, res) => {
@@ -37,29 +31,21 @@ export const updateProduct = async (req, res) => {
   const constraintValues = [ `'${old_product_name}'`, `'${old_cutting_type}'` ];
   const columns = [ 'product_name', 'price', 'cutting_type' ];
   const values = [ `'${product_name}'`, `'${price}'`, `'${cutting_type}'` ];
-  try {
-    const data = await productsModel.updateWithReturn(
-      constraintColumns,
-      constraintValues,
-      columns,
-      values
-    );
-    res.status(200).json({ products: data.rows });
-  } catch (err) {
-    res.status(200).json({ products: err.stack });
-  }
+  const queryResult = await productsHandler.updateResource(
+    constraintColumns,
+    constraintValues,
+    columns,
+    values
+  );
+  res.status(200).json({ products: queryResult });
 };
 
 export const deleteProduct = async (req, res) => {
   const { product_name, cutting_type } = req.body;
   const columns = [ 'product_name', 'cutting_type' ];
   const values = [ `'${product_name}'`, `'${cutting_type}'` ];
-  try {
-    const data = await productsModel.deleteWithReturn(columns, values);
-    res.status(200).json({ products: data.rows });
-  } catch (err) {
-    res.status(200).json({ products: err.stack });
-  }
+  const queryResult = await productsHandler.deleteResource(columns, values);
+  res.status(200).json({ products: queryResult });
 };
 
 export const getProductId = async (product_name, cutting_type) => {
