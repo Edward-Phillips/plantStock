@@ -36,6 +36,18 @@ class ResourceHandler {
       return err.stack;
     }
   }
+
+  async deleteResource(constraintColumns, constraintValues) {
+    try {
+      const data = await this.model.deleteWithReturn(
+        constraintColumns,
+        constraintValues
+      );
+      return data.rows;
+    } catch (err) {
+      return err.stack;
+    }
+  }
 }
 
 export default ResourceHandler;
