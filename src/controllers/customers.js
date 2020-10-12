@@ -6,12 +6,9 @@ const customersModel = new Model('customers');
 const customersHandler = new ResourceHandler('customers');
 
 export const getCustomers = async (req, res) => {
-  try {
-    const data = await customersModel.select('id, name, address');
-    res.status(200).json({ customers: data.rows });
-  } catch (err) {
-    res.status(200).json({ customers: err.stack });
-  }
+  const columns = 'id, name, address';
+  const queryResult = await customersHandler.getResources(columns);
+  res.status(200).json({ customers: queryResult });
 };
 
 export const addCustomer = async (req, res) => {
