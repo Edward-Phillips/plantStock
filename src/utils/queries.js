@@ -81,9 +81,8 @@ VALUES
   ('Philodendron Squamiferum', 1.5, 'unrooted');
 INSERT INTO stock(product_id, cost_per_cutting, current_count)
 VALUES
-  (1, 0.35, 25),
+  (1, 0.35, 45),
   (2, 0.35, 25);
-
 INSERT INTO customers(name, address)
 VALUES
   ('Steve', '45 the house on the hill'),
