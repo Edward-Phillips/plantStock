@@ -14,6 +14,7 @@ import {
   updateCustomer,
   getOrdersForCustomer,
   addOrder,
+  addOrderItems,
 } from '../controllers';
 import { productIdFinder } from '../middleware';
 
@@ -36,6 +37,6 @@ indexRouter.post('/customers', addCustomer);
 indexRouter.put('/customers', updateCustomer);
 
 indexRouter.get('/orders/:customerId', getOrdersForCustomer);
-indexRouter.post('/orders', addOrder);
+indexRouter.post('/orders', addOrder, addOrderItems);
 
 export default indexRouter;
