@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/Edward-Phillips/plantStock.svg?branch=plantStock)](https://travis-ci.com/Edward-Phillips/plantStock)
 
-[![Coverage Status](https://coveralls.io/repos/github/Edward-Phillips/plantStock/badge.svg)](https://coveralls.io/github/Edward-Phillips/plantStock)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/35be65ea2ae5dd89f775/test_coverage)](https://codeclimate.com/github/Edward-Phillips/plantStock/test_coverage)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/35be65ea2ae5dd89f775/maintainability)](https://codeclimate.com/github/Edward-Phillips/plantStock/maintainability)
 
